@@ -131,9 +131,91 @@
       .links a { font-size: 1em; padding: 12px 20px; }
       .admin-panel, .frends-panel, .info-panel { max-width: 90%; left: 5%; }
     }
+    #countdown {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  background: rgba(0, 0, 40, 0.6);
+  border: 2px solid rgba(127, 0, 255, 0.5);
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(127, 0, 255, 0.6);
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+  backdrop-filter: blur(4px);
+  animation: pulse 2s infinite;
+  z-index: 999;
+}
+/* --- Responsywność całej strony --- */
+@media (max-width: 768px) {
+  body, html {
+    overflow-y: auto; /* pozwól przewijać na telefonie */
+  }
+  .content {
+    padding: 30px 20px;
+    max-width: 95%;
+    border-radius: 15px;
+  }
+  h1#mainTitle {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  .links a {
+    font-size: 1.2em;
+    padding: 14px 30px;
+    width: 80%;
+    margin: 10px auto;
+    border-radius: 30px;
+  }
+  .login-box {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 90vw;
+    max-width: 300px;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #7f00ff;
+  }
+  .login-box input, .login-box button {
+    font-size: 1.1em;
+    padding: 10px;
+  }
+  .admin-panel, .frends-panel {
+    position: fixed;
+    bottom: 10px;
+    left: 5%;
+    max-width: 90vw;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 0.9em;
+  }
+  .admin-panel input[type="text"] {
+    font-size: 1em;
+    padding: 8px;
+  }
+  .admin-panel button, .frends-panel button {
+    font-size: 1.1em;
+    padding: 10px;
+  }
+  #countdown {
+    font-size: 1em;
+    padding: 8px 12px;
+    bottom: 10px;
+    box-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
+    border: 1.5px solid rgba(127, 0, 255, 0.3);
+    animation: none;
+  }
+}
+
   </style>
 </head>
 <body>
+  <div id="countdown" style="margin-top: 20px; font-size: 1.4em; font-weight: bold;"></div>
+
   <div class="content">
     <h1 id="mainTitle">OlafxVlog</h1>
     <p id="message"></p>
@@ -189,7 +271,7 @@
   </div>
 
   <script>
-    const devices = ["MacBook M4", "iPhone 13", "iPad", "DJI mac mini"];
+    const devices = ["MacBook M4", "iPhone 13", "iPad", "DJI", "Mac mini"];
     const loginForm = document.getElementById('loginForm');
     let isRoot = false;
 
@@ -262,6 +344,34 @@
       document.getElementById('infoPanel').style.display = 'none';
       document.getElementById('loginBox').style.display = 'block';
     }
+    function getNextSunday() {
+  const now = new Date();
+  const result = new Date(now);
+  const day = now.getDay();
+  const distance = (7 - day) % 7 || 7; // zawsze idzie do przyszłej niedzieli
+  result.setDate(now.getDate() + distance);
+  result.setHours(0, 0, 0, 0);
+  return result;
+}
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const target = getNextSunday().getTime();
+  const distance = target - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
+
+  document.getElementById('countdown').innerHTML =
+    `⏳ Do niedzieli: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+// Odświeżaj co sekundę
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
   </script>
 </body>
 </html>
