@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OlafxVlog Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('tło.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content {
+      text-align: center;
+      padding: 40px;
+      border-radius: 20px;
+      background-color: rgba(0, 0, 30, 0.6);
+      color: white;
+      max-width: 90%;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 20px rgba(127, 0, 255, 0.4);
+    }
+
+    h2 {
+      font-size: 3em;
+      margin-bottom: 30px;
+      animation: float 3s ease-in-out infinite;
+      background: linear-gradient(90deg, #7f00ff, #00bfff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(127, 0, 255, 0.7);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .links a {
+      display: block;
+      margin: 12px auto;
+      padding: 14px 25px;
+      background: linear-gradient(90deg, #7f00ff, #00bfff);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.1em;
+      text-decoration: none;
+      width: fit-content;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(127, 0, 255, 0.6);
+    }
+
+    .links a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 191, 255, 0.7);
+    }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 2em;
+      }
+
+      .links a {
+        font-size: 1em;
+        padding: 12px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h2>OlafxVlog</h2>
+    <div class="links">
+      <a href="https://www.youtube.com/@Olafxvlog" target="_blank">YouTube</a>
+      <a href="https://instagram.com/Olafxvlog" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@OlafxVlog" target="_blank">TikTok</a>
+    </div>
+  </div>
+</body>
+</html>
