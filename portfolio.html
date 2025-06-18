@@ -5,12 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>OlafxVlog Portfolio</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
@@ -19,8 +14,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
-
     .content {
       text-align: center;
       padding: 40px;
@@ -31,8 +26,7 @@
       backdrop-filter: blur(6px);
       box-shadow: 0 0 20px rgba(127, 0, 255, 0.4);
     }
-
-    h2 {
+    h1#mainTitle {
       font-size: 3em;
       margin-bottom: 30px;
       animation: float 3s ease-in-out infinite;
@@ -41,12 +35,10 @@
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 20px rgba(127, 0, 255, 0.7);
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
-
     .links a {
       display: block;
       margin: 12px auto;
@@ -62,32 +54,197 @@
       transition: all 0.3s ease;
       box-shadow: 0 0 10px rgba(127, 0, 255, 0.6);
     }
-
     .links a:hover {
       transform: scale(1.05);
       box-shadow: 0 0 20px rgba(0, 191, 255, 0.7);
     }
+    .login-box {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 40, 0.7);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #7f00ff;
+      z-index: 999;
+    }
+    .login-box input, .login-box button {
+      margin: 5px 0;
+      padding: 8px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+    }
+    .login-box input {
+      background: #111;
+      color: white;
+    }
+    .login-box button {
+      background: linear-gradient(90deg, #7f00ff, #00bfff);
+      color: white;
+      cursor: pointer;
+    }
+    .admin-panel, .frends-panel {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: rgba(20, 20, 60, 0.95);
+      padding: 20px;
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00bfff;
+      z-index: 999;
+      max-width: 300px;
+    }
+    .admin-panel input[type="text"] {
+      width: 100%;
+      padding: 6px;
+      margin-bottom: 10px;
+      background: #222;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .admin-panel label {
+      font-size: 0.9em;
+      color: #ccc;
+    }
+    .admin-panel button, .frends-panel button {
+      background: linear-gradient(90deg, #7f00ff, #00bfff);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-top: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+    #message { font-style: italic; margin-top: 20px; }
 
-    @media (max-width: 600px) {
-      h2 {
-        font-size: 2em;
-      }
+    .device-list {
+      margin-top: 15px;
+      font-size: 1em;
+    }
 
-      .links a {
-        font-size: 1em;
-        padding: 12px 20px;
-      }
+    @media (max-width: 768px) {
+      h1#mainTitle { font-size: 2em; }
+      .links a { font-size: 1em; padding: 12px 20px; }
+      .admin-panel, .frends-panel { max-width: 90%; left: 5%; }
     }
   </style>
 </head>
 <body>
   <div class="content">
-    <h2>OlafxVlog</h2>
+    <h1 id="mainTitle">OlafxVlog</h1>
+    <p id="message"></p>
     <div class="links">
-      <a href="https://www.youtube.com/@Olafxvlog" target="_blank">YouTube</a>
-      <a href="https://instagram.com/Olafxvlog" target="_blank">Instagram</a>
-      <a href="https://tiktok.com/@OlafxVlog" target="_blank">TikTok</a>
+      <a href="#" id="yt">YouTube</a>
+      <a href="#" id="ig">Instagram</a>
+      <a href="#" id="tt">TikTok</a>
     </div>
   </div>
+
+  <!-- LOGOWANIE -->
+  <div class="login-box" id="loginBox">
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Login">
+      <input type="password" id="password" placeholder="Hasło">
+      <button type="submit">Zaloguj</button>
+    </form>
+  </div>
+
+  <!-- PANEL ADMINA -->
+  <div class="admin-panel" id="adminPanel" style="display: none;">
+    <label>Nowy link YouTube:</label>
+    <input type="text" id="ytInput" placeholder="https://youtube.com/@OlafxVlog/">
+    <label>Nowy link Instagram:</label>
+    <input type="text" id="igInput" placeholder="https://instagram.com/OlafxVlog/">
+    <label>Nowy link TikTok:</label>
+    <input type="text" id="ttInput" placeholder="https://tiktok.com/OlafxVlog/">
+    <label>Wiadomość dnia:</label>
+    <input type="text" id="msgInput" placeholder="Np. nowy film dziś!">
+    <label>Dodaj sprzęt:</label>
+    <input type="text" id="deviceInput" placeholder="np. GoPro Hero 12">
+    <button onclick="applyChanges()">Zapisz zmiany</button>
+    <button onclick="toggleTitle()">Pokaż/Ukryj napis</button>
+    <button onclick="addDevice()">Dodaj sprzęt</button>
+    <button onclick="logout()">Wyloguj</button>
+  </div>
+
+  <!-- PANEL FREINDS -->
+  <div class="frends-panel" id="frendsPanel" style="display: none;">
+    <h3>💻 Sprzęt OlafxVlog:</h3>
+    <ul id="deviceList" class="device-list"></ul>
+    <button onclick="logout()">Wyloguj</button>
+  </div>
+
+  <script>
+    const devices = ["MacBook M4", "iPhone 13", "iPad", "DJI", "Mac mini"];
+    const yt = document.getElementById('yt');
+    const ig = document.getElementById('ig');
+    const tt = document.getElementById('tt');
+
+    yt.onclick = () => { console.log("YT clicked"); };
+    ig.onclick = () => { console.log("IG clicked"); };
+    tt.onclick = () => { console.log("TT clicked"); };
+
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+
+      if (user === 'root' && pass === 'root1') {
+        document.getElementById('adminPanel').style.display = 'block';
+        document.getElementById('loginBox').style.display = 'none';
+        updateDeviceList();
+      } else if (user === 'frends' && pass === 'frends1') {
+        document.getElementById('frendsPanel').style.display = 'block';
+        document.getElementById('loginBox').style.display = 'none';
+        updateDeviceList();
+      } else {
+        alert("Błędne dane logowania");
+      }
+    });
+
+    function updateDeviceList() {
+      const list = document.getElementById('deviceList');
+      list.innerHTML = '';
+      devices.forEach(device => {
+        const li = document.createElement('li');
+        li.textContent = "🔹 " + device;
+        list.appendChild(li);
+      });
+    }
+
+    function applyChanges() {
+      yt.href = document.getElementById('ytInput').value || '#';
+      ig.href = document.getElementById('igInput').value || '#';
+      tt.href = document.getElementById('ttInput').value || '#';
+      document.getElementById('message').textContent = document.getElementById('msgInput').value || '';
+      alert('Zapisano zmiany');
+    }
+
+    function toggleTitle() {
+      const title = document.getElementById('mainTitle');
+      title.style.display = (title.style.display === 'none') ? 'block' : 'none';
+    }
+
+    function addDevice() {
+      const newDevice = document.getElementById('deviceInput').value.trim();
+      if (newDevice) {
+        devices.push(newDevice);
+        updateDeviceList();
+        document.getElementById('deviceInput').value = '';
+        alert('Sprzęt dodany!');
+      }
+    }
+
+    function logout() {
+      document.getElementById('adminPanel').style.display = 'none';
+      document.getElementById('frendsPanel').style.display = 'none';
+      document.getElementById('loginBox').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
