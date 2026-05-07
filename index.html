@@ -1,377 +1,235 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OlafxVlog Portfolio</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('tło.jpeg') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .content {
-      text-align: center;
-      padding: 40px;
-      border-radius: 20px;
-      background-color: rgba(0, 0, 30, 0.6);
-      color: white;
-      max-width: 90%;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 0 20px rgba(127, 0, 255, 0.4);
-    }
-    h1#mainTitle {
-      font-size: 3em;
-      margin-bottom: 30px;
-      animation: float 3s ease-in-out infinite;
-      background: linear-gradient(90deg, #7f00ff, #00bfff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 20px rgba(127, 0, 255, 0.7);
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .links a {
-      display: block;
-      margin: 12px auto;
-      padding: 14px 25px;
-      background: linear-gradient(90deg, #7f00ff, #00bfff);
-      color: white;
-      font-weight: bold;
-      border: none;
-      border-radius: 25px;
-      font-size: 1.1em;
-      text-decoration: none;
-      width: fit-content;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px rgba(127, 0, 255, 0.6);
-    }
-    .links a:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(0, 191, 255, 0.7);
-    }
-    .login-box {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(0, 0, 40, 0.7);
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #7f00ff;
-      z-index: 999;
-    }
-    .login-box input, .login-box button {
-      margin: 5px 0;
-      padding: 8px;
-      width: 100%;
-      border: none;
-      border-radius: 5px;
-    }
-    .login-box input {
-      background: #111;
-      color: white;
-    }
-    .login-box button {
-      background: linear-gradient(90deg, #7f00ff, #00bfff);
-      color: white;
-      cursor: pointer;
-    }
-    .admin-panel, .frends-panel, .info-panel {
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      background: rgba(20, 20, 60, 0.95);
-      padding: 20px;
-      color: white;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #00bfff;
-      z-index: 999;
-      max-width: 300px;
-    }
-    .admin-panel input[type="text"] {
-      width: 100%;
-      padding: 6px;
-      margin-bottom: 10px;
-      background: #222;
-      color: white;
-      border: none;
-      border-radius: 5px;
-    }
-    .admin-panel label {
-      font-size: 0.9em;
-      color: #ccc;
-    }
-    .admin-panel button,
-    .frends-panel button,
-    .info-panel button {
-      background: linear-gradient(90deg, #7f00ff, #00bfff);
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-top: 8px;
-      cursor: pointer;
-      width: 100%;
-    }
-    #message { font-style: italic; margin-top: 20px; }
-    .device-list {
-      margin-top: 15px;
-      font-size: 1em;
-    }
-    @media (max-width: 768px) {
-      h1#mainTitle { font-size: 2em; }
-      .links a { font-size: 1em; padding: 12px 20px; }
-      .admin-panel, .frends-panel, .info-panel { max-width: 90%; left: 5%; }
-    }
-    #countdown {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OlafxVlog Portfolio</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0b0b10;
+  color: white;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at top, #1a1a2e, #0b0b10);
+}
+
+.hero h1 {
+  font-size: 4em;
+  background: linear-gradient(90deg, #7f00ff, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero h2 {
+  margin-top: 10px;
+  font-weight: 300;
+  color: #aaa;
+}
+
+.buttons {
+  margin-top: 25px;
+}
+
+.btn {
   padding: 12px 20px;
-  background: rgba(0, 0, 40, 0.6);
-  border: 2px solid rgba(127, 0, 255, 0.5);
-  border-radius: 12px;
-  color: #ffffff;
+  margin: 5px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #7f00ff, #00bfff);
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* SEKCJE */
+section {
+  padding: 80px 15%;
+}
+
+h2.section-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  border-left: 4px solid #7f00ff;
+  padding-left: 10px;
+}
+
+/* ABOUT */
+.about {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* SKILLS */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill {
+  background: #1a1a2e;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #333;
+}
+
+/* FORMATS */
+.formats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.format {
+  flex: 1;
+  min-width: 200px;
+  padding: 20px;
+  background: #1a1a2e;
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* PORTFOLIO */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.video {
+  background: #111;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.video iframe {
+  width: 100%;
+  height: 200px;
+}
+
+/* CONTACT */
+.contact {
+  text-align: center;
   font-size: 1.2em;
-  font-weight: bold;
-  text-shadow: 0 0 6px rgba(127, 0, 255, 0.6);
-  box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
-  backdrop-filter: blur(4px);
-  animation: pulse 2s infinite;
-  z-index: 999;
-}
-/* --- Responsywność całej strony --- */
-@media (max-width: 768px) {
-  body, html {
-    overflow-y: auto; /* pozwól przewijać na telefonie */
-  }
-  .content {
-    padding: 30px 20px;
-    max-width: 95%;
-    border-radius: 15px;
-  }
-  h1#mainTitle {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  .links a {
-    font-size: 1.2em;
-    padding: 14px 30px;
-    width: 80%;
-    margin: 10px auto;
-    border-radius: 30px;
-  }
-  .login-box {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    width: 90vw;
-    max-width: 300px;
-    padding: 10px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px #7f00ff;
-  }
-  .login-box input, .login-box button {
-    font-size: 1.1em;
-    padding: 10px;
-  }
-  .admin-panel, .frends-panel {
-    position: fixed;
-    bottom: 10px;
-    left: 5%;
-    max-width: 90vw;
-    padding: 15px;
-    border-radius: 12px;
-    font-size: 0.9em;
-  }
-  .admin-panel input[type="text"] {
-    font-size: 1em;
-    padding: 8px;
-  }
-  .admin-panel button, .frends-panel button {
-    font-size: 1.1em;
-    padding: 10px;
-  }
-  #countdown {
-    font-size: 1em;
-    padding: 8px 12px;
-    bottom: 10px;
-    box-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
-    border: 1.5px solid rgba(127, 0, 255, 0.3);
-    animation: none;
-  }
+  color: #ccc;
 }
 
-  </style>
+.email {
+  color: #00bfff;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px){
+  section {
+    padding: 60px 10%;
+  }
+  .hero h1 {
+    font-size: 2.5em;
+  }
+}
+</style>
 </head>
-<body>
-  <div id="countdown" style="margin-top: 20px; font-size: 1.4em; font-weight: bold;"></div>
 
-  <div class="content">
-    <h1 id="mainTitle">OlafxVlog</h1>
-    <p id="message"></p>
-    <div class="links">
-      <a href="https://www.youtube.com/@Olafxvlog">YouTube</a>
-      <a href="https://www.instagram.com/OlafxVlog/">Instagram</a>
-      <a href="https://www.tiktok.com/@OlafxVlog">TikTok</a>
-      <a href="https://github.com/olafxVlog">GitHub</a>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>OlafxVlog</h1>
+  <h2>montaż i nagranie</h2>
+
+  <div class="buttons">
+    <a href="#portfolio" class="btn">Prace</a>
+    <a href="#contact" class="btn">Kontakt</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section>
+  <h2 class="section-title">O mnie</h2>
+  <p class="about">
+    Zajmuję się montażem video oraz nagrywaniem materiałów wideo.
+    Ostatnio pracowałem przy nagraniu teledysku.
+    Tworzę dynamiczne edity pod social media oraz projekty cinematic.
+  </p>
+</section>
+
+<!-- FORMATS -->
+<section>
+  <h2 class="section-title">Formaty</h2>
+  <div class="formats">
+    <div class="format">
+      <h3>16:9</h3>
+      <p>YouTube / filmy / teledyski</p>
+    </div>
+    <div class="format">
+      <h3>9:16</h3>
+      <p>TikTok / Reels / Shorts</p>
     </div>
   </div>
+</section>
 
-  <!-- LOGOWANIE -->
-  <div class="login-box" id="loginBox">
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Login">
-      <input type="password" id="password" placeholder="Hasło">
-      <button type="submit">Zaloguj</button>
-    </form>
+<!-- SKILLS -->
+<section>
+  <h2 class="section-title">Uprawnienia</h2>
+  <div class="skills">
+    <div class="skill">Adobe Premiere Pro</div>
+    <div class="skill">DaVinci Resolve</div>
+    <div class="skill">Drony STS-01</div>
+    <div class="skill">Color Grading</div>
+    <div class="skill">Montaż cinematic</div>
+    <div class="skill">Nagrywanie video</div>
   </div>
+</section>
 
-  <!-- PANEL ADMINA -->
-  <div class="admin-panel" id="adminPanel" style="display: none;">
-    <label>Nowy link YouTube:</label>
-    <input type="text" id="ytInput">
-    <label>Nowy link Instagram:</label>
-    <input type="text" id="igInput">
-    <label>Nowy link TikTok:</label>
-    <input type="text" id="ttInput">
-    <label>Wiadomość dnia:</label>
-    <input type="text" id="msgInput">
-    <label>Dodaj sprzęt:</label>
-    <input type="text" id="deviceInput">
-    <button onclick="applyChanges()">Zapisz zmiany</button>
-    <button onclick="toggleTitle()">Pokaż/Ukryj napis</button>
-    <button onclick="addDevice()">Dodaj sprzęt</button>
-    <button onclick="revealInfo()">Odszyfruj info</button>
-    <button onclick="logout()">Wyloguj</button>
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <h2 class="section-title">Moje prace</h2>
+
+  <div class="video-grid">
+
+    <!-- PODMIEŃ LINKI Z YT -->
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+    </div>
+
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+    </div>
+
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+    </div>
+
   </div>
+</section>
 
-  <!-- PANEL FREINDS -->
-  <div class="frends-panel" id="frendsPanel" style="display: none;">
-    <h3>💻 Sprzęt OlafxVlog:</h3>
-    <ul id="deviceList" class="device-list"></ul>
-    <button onclick="logout()">Wyloguj</button>
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title">Kontakt</h2>
+  <div class="contact">
+    Email: <span class="email">Olafjatkowski@wp.pl</span>
   </div>
+</section>
 
-  <!-- PANEL INFO -->
-  <div class="info-panel" id="infoPanel" style="display: none;">
-    <h3>📨 Informacje o mnie</h3>
-    <p>Email: <span id="email">•••••••••••••••••</span></p>
-    <p>Telefon: <span id="phone">•••••••••••</span></p>
-    <button onclick="logout()">Wyloguj</button>
-  </div>
-
-  <script>
-    const devices = ["MacBook M4", "iPhone 13", "iPad", "DJI", "Mac mini"];
-    const loginForm = document.getElementById('loginForm');
-    let isRoot = false;
-
-    loginForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
-
-      isRoot = (user === 'root' && pass === 'root1');
-
-      if (isRoot) {
-        document.getElementById('adminPanel').style.display = 'block';
-        document.getElementById('loginBox').style.display = 'none';
-        updateDeviceList();
-      } else if (user === 'frends' && pass === 'frends1') {
-        document.getElementById('frendsPanel').style.display = 'block';
-        document.getElementById('loginBox').style.display = 'none';
-        updateDeviceList();
-      } else if (user === 'info' && pass === 'info1') {
-        document.getElementById('infoPanel').style.display = 'block';
-        document.getElementById('loginBox').style.display = 'none';
-      } else {
-        alert("Błędne dane logowania");
-      }
-    });
-
-    function updateDeviceList() {
-      const list = document.getElementById('deviceList');
-      list.innerHTML = '';
-      devices.forEach(device => {
-        const li = document.createElement('li');
-        li.textContent = "🔹 " + device;
-        list.appendChild(li);
-      });
-    }
-
-    function applyChanges() {
-      document.querySelectorAll('.links a')[0].href = document.getElementById('ytInput').value || '#';
-      document.querySelectorAll('.links a')[1].href = document.getElementById('igInput').value || '#';
-      document.querySelectorAll('.links a')[2].href = document.getElementById('ttInput').value || '#';
-      document.getElementById('message').textContent = document.getElementById('msgInput').value || '';
-      alert('Zapisano zmiany');
-    }
-
-    function toggleTitle() {
-      const title = document.getElementById('mainTitle');
-      title.style.display = (title.style.display === 'none') ? 'block' : 'none';
-    }
-
-    function addDevice() {
-      const newDevice = document.getElementById('deviceInput').value.trim();
-      if (newDevice) {
-        devices.push(newDevice);
-        updateDeviceList();
-        document.getElementById('deviceInput').value = '';
-        alert('Sprzęt dodany!');
-      }
-    }
-
-    function revealInfo() {
-      if (isRoot) {
-        document.getElementById('email').textContent = 'szybowca@wp.pl';
-        document.getElementById('phone').textContent = '+48 123 456 789';
-      }
-    }
-
-    function logout() {
-      document.getElementById('adminPanel').style.display = 'none';
-      document.getElementById('frendsPanel').style.display = 'none';
-      document.getElementById('infoPanel').style.display = 'none';
-      document.getElementById('loginBox').style.display = 'block';
-    }
-    function getNextSunday() {
-  const now = new Date();
-  const result = new Date(now);
-  const day = now.getDay();
-  const distance = (7 - day) % 7 || 7; // zawsze idzie do przyszłej niedzieli
-  result.setDate(now.getDate() + distance);
-  result.setHours(0, 0, 0, 0);
-  return result;
-}
-
-function updateCountdown() {
-  const now = new Date().getTime();
-  const target = getNextSunday().getTime();
-  const distance = target - now;
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((distance / (1000 * 60)) % 60);
-  const seconds = Math.floor((distance / 1000) % 60);
-
-  document.getElementById('countdown').innerHTML =
-    `⏳ Do niedzieli: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-
-// Odświeżaj co sekundę
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-  </script>
 </body>
 </html>
